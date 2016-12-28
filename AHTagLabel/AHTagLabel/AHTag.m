@@ -18,6 +18,80 @@
 
 @implementation AHTag
 
++ (NSArray *)testTags
+{
+    NSArray *array = @[
+                       @{
+                           @"ENABLED": @(false),
+                           @"CATEGORY": @"test",
+                           @"TITLE": @"测试1"
+                           },
+                       @{
+                           @"ENABLED": @(false),
+                           @"CATEGORY": @"test",
+                           @"TITLE": @"测试2"
+                           },
+                       @{
+                           @"ENABLED": @(false),
+                           @"CATEGORY": @"test",
+                           @"TITLE": @"测试3"
+                           },
+                       @{
+                           @"ENABLED": @(false),
+                           @"CATEGORY": @"test",
+                           @"TITLE": @"测试4"
+                           },
+                       @{
+                           @"ENABLED": @(false),
+                           @"CATEGORY": @"test",
+                           @"TITLE": @"测试5"
+                           },
+                       @{
+                           @"ENABLED": @(false),
+                           @"CATEGORY": @"test",
+                           @"TITLE": @"测试6"
+                           },
+                       @{
+                           @"ENABLED": @(false),
+                           @"CATEGORY": @"test",
+                           @"TITLE": @"测试7"
+                           },
+                       @{
+                           @"ENABLED": @(false),
+                           @"CATEGORY": @"test",
+                           @"TITLE": @"测试8"
+                           },
+                       @{
+                           @"ENABLED": @(false),
+                           @"CATEGORY": @"test",
+                           @"TITLE": @"测试9"
+                           },
+                       @{
+                           @"ENABLED": @(false),
+                           @"CATEGORY": @"test",
+                           @"TITLE": @"测试10"
+                           },
+                       @{
+                           @"ENABLED": @(false),
+                           @"CATEGORY": @"test",
+                           @"TITLE": @"测试11"
+                           },
+                       @{
+                           @"ENABLED": @(false),
+                           @"CATEGORY": @"test",
+                           @"TITLE": @"测试12"
+                           },
+                       ];
+    
+    NSMutableArray *tags = [NSMutableArray new];
+    for (NSDictionary *tagDict in array) {
+        AHTag *tag = [tagDict tag];
+        [tags addObject:tag];
+    }
+    
+    return tags;
+}
+
 @end
 
 @implementation NSDictionary (Extensions)
@@ -50,5 +124,7 @@
                             blue:((float)((value & 0x0000FF) >>  0))/255.0 \
                            alpha:1.0];
 }
+
+
 
 @end

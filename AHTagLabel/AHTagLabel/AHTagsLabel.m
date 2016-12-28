@@ -30,7 +30,6 @@
 - (void)setup {
     self.numberOfLines = 0;
     self.lineBreakMode = NSLineBreakByWordWrapping;
-//    self.textAlignment = NSTextAlignmentCenter;
     self.backgroundColor = [UIColor whiteColor];
     self.userInteractionEnabled = YES;
     self.tagMinWidth = 55;
@@ -162,6 +161,7 @@
         UIColor *borderColor = enabled.boolValue == YES ? self.selectedBorderColor : self.normalBorderColor;
 
         AHTagView *view = [AHTagView new];
+        view.label.attributedText = [AHTagsLabel attributedString:title];
         view.label.font = labelFont;
         view.label.textColor = color;
         view.label.layer.borderColor = borderColor.CGColor;
@@ -172,7 +172,6 @@
             view.label.layer.cornerRadius = 0;
             view.label.layer.masksToBounds = NO;
         }
-        view.label.attributedText = [AHTagsLabel attributedString:title];
         
         CGSize size = [view systemLayoutSizeFittingSize:view.frame.size
                           withHorizontalFittingPriority:UILayoutPriorityFittingSizeLevel

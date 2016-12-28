@@ -18,6 +18,8 @@
 @property (nonatomic, strong) id data;
 @property (nonatomic, strong) NSNumber *isCustomer;
 
++ (NSArray *)testTags;
+
 @end
 
 @interface NSDictionary (Extensions)
