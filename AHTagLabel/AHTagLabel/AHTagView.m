@@ -27,12 +27,12 @@
 }
 
 /*
-// Only override drawRect: if you perform custom drawing.
-// An empty implementation adversely affects performance during animation.
-- (void)drawRect:(CGRect)rect {
-    // Drawing code
-}
-*/
+ // Only override drawRect: if you perform custom drawing.
+ // An empty implementation adversely affects performance during animation.
+ - (void)drawRect:(CGRect)rect {
+ // Drawing code
+ }
+ */
 
 - (void)setupViews {
     self.backgroundColor = [UIColor whiteColor];
@@ -40,7 +40,8 @@
     _label.textColor = [UIColor lightGrayColor];
     _label.textAlignment = NSTextAlignmentCenter;
     _label.font = [UIFont systemFontOfSize:14];
-    _label.numberOfLines = 0;
+    _label.numberOfLines = 1;
+    _label.lineBreakMode = NSLineBreakByTruncatingTail;
     _label.translatesAutoresizingMaskIntoConstraints = NO;
     _label.layer.borderWidth = 1;
     [self addSubview:_label];
@@ -48,13 +49,25 @@
 }
 
 - (void)setupConstraints {
+    
     NSMutableArray<NSLayoutConstraint *> *constraints = [NSMutableArray new];
     
-    [constraints addObjectsFromArray:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-4.0-[_label]-4.0-|"
-                                                                             options:NSLayoutFormatDirectionLeadingToTrailing
-                                                                             metrics:nil
-                                                                               views:@{@"_label": _label}]];
-
+    [constraints addObject:[NSLayoutConstraint constraintWithItem:_label
+                                                        attribute:NSLayoutAttributeLeading
+                                                        relatedBy:NSLayoutRelationEqual
+                                                           toItem:self
+                                                        attribute:NSLayoutAttributeLeading
+                                                       multiplier:1.0
+                                                         constant:4.0]];
+    
+    [constraints addObject:[NSLayoutConstraint constraintWithItem:self
+                                                        attribute:NSLayoutAttributeTrailing
+                                                        relatedBy:NSLayoutRelationEqual
+                                                           toItem:_label
+                                                        attribute:NSLayoutAttributeTrailing
+                                                       multiplier:1.0
+                                                         constant:4.0]];
+    
     [constraints addObject:[NSLayoutConstraint constraintWithItem:_label
                                                         attribute:NSLayoutAttributeHeight
                                                         relatedBy:NSLayoutRelationGreaterThanOrEqual

@@ -84,16 +84,16 @@
     }
     
     return _selectedBorderColor;
-
+    
 }
 
 /*
-// Only override drawRect: if you perform custom drawing.
-// An empty implementation adversely affects performance during animation.
-- (void)drawRect:(CGRect)rect {
-    // Drawing code
-}
-*/
+ // Only override drawRect: if you perform custom drawing.
+ // An empty implementation adversely affects performance during animation.
+ - (void)drawRect:(CGRect)rect {
+ // Drawing code
+ }
+ */
 
 - (void)tap:(UITapGestureRecognizer *)recognizer {
     UILabel *label = (UILabel *)recognizer.view;
@@ -115,7 +115,7 @@
                                                  inTextContainer:container
                         fractionOfDistanceBetweenInsertionPoints:nil];
     
-
+    
     //是否是多选
     if (_canMultiSelect) {
         AHTag *currentTag = _tags[indexOfCharacter];
@@ -149,6 +149,9 @@
 - (void)setTags:(NSArray<AHTag *> *)tags {
     _tags = tags;
     
+    [self setNeedsLayout];
+    CGFloat maxWidth = CGRectGetWidth(self.frame);
+
     UITableViewCell *cell = [UITableViewCell new];
     NSMutableAttributedString *mutableString = [NSMutableAttributedString new];
     NSMutableArray *chooseTags = [NSMutableArray new];
@@ -159,7 +162,7 @@
         UIFont *labelFont = self.labelFont;
         UIColor *color = enabled.boolValue == YES ? self.selectedColor : self.normalColor;
         UIColor *borderColor = enabled.boolValue == YES ? self.selectedBorderColor : self.normalBorderColor;
-
+        
         AHTagView *view = [AHTagView new];
         view.label.attributedText = [AHTagsLabel attributedString:title];
         view.label.font = labelFont;
@@ -178,6 +181,7 @@
                                 verticalFittingPriority:UILayoutPriorityFittingSizeLevel];
         CGFloat viewWidth = size.width < self.tagMinWidth ? self.tagMinWidth : size.width;
         viewWidth += 20;
+        viewWidth = viewWidth > maxWidth ? maxWidth : viewWidth;
         view.frame = CGRectMake(0, 0, viewWidth, size.height);
         [cell.contentView addSubview:view];
         
