@@ -185,6 +185,7 @@
         view.frame = CGRectMake(0, 0, viewWidth, size.height);
         [cell.contentView addSubview:view];
         
+        [view layoutIfNeeded];
         UIImage *image = view.image;
         NSTextAttachment *attachment = [NSTextAttachment new];
         attachment.image = image;
